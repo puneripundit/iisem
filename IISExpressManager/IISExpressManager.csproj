@@ -102,6 +102,8 @@
     <Compile Include="Helpers\ProcessCommandLineFinder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\SiteComparer.cs" />
+    <Compile Include="ViewModels\SortableBindingList.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -132,6 +134,9 @@
     <EmbeddedResource Include="start.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <None Include="Resources\browser.png" />
+    <None Include="aosp-browser-icon.png" />
+    <None Include="Resources\blank_icon.png" />
     <Content Include="stop.png" />
     <Content Include="FodyWeavers.xml" />
     <Content Include="IISEM.ico" />

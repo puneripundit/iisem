@@ -61,6 +61,26 @@ namespace IISExpressManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap blank_icon {
+            get {
+                object obj = ResourceManager.GetObject("blank_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap browser_icon {
+            get {
+                object obj = ResourceManager.GetObject("browser_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Severe Error. It looks like your IISExpress is corrupted.
         ///Please reinstall IISExpress
         ///IISEM will close now..
@@ -90,6 +110,15 @@ namespace IISExpressManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Abort!.
+        /// </summary>
+        internal static string Program_Main_Abort_Header {
+            get {
+                return ResourceManager.GetString("Program_Main_Abort_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to IIS Express not installed or configuration not found!.
         /// </summary>
         internal static string Program_Main_IIS_Express_not_installed_or_configuration_not_found_Message {
@@ -104,6 +133,15 @@ namespace IISExpressManager.Properties {
         internal static string Program_Main_SingleInstance_ErrorMessage {
             get {
                 return ResourceManager.GetString("Program_Main_SingleInstance_ErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warning!.
+        /// </summary>
+        internal static string Program_Main_Warning_Header {
+            get {
+                return ResourceManager.GetString("Program_Main_Warning_Header", resourceCulture);
             }
         }
         

@@ -1,22 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 using IISExpressManager.Helpers;
 using IISExpressManager.Properties;
 using IISExpressManager.ViewModels;
-using Microsoft.VisualBasic.ApplicationServices;
 using WinForms.Framework.Messaging;
 
 namespace IISExpressManager
 {
-    static class Program
+    internal static class Program
     {
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -24,8 +21,8 @@ namespace IISExpressManager
             {
                 MessageBox.Show(
                     Resources.Program_Main_SingleInstance_ErrorMessage,
-                    "Warning!",
-                    MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                    Resources.Program_Main_Warning_Header,
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -34,7 +31,7 @@ namespace IISExpressManager
             {
                 MessageBox.Show(
                     Resources.Program_Main_IIS_Express_not_installed_or_configuration_not_found_Message,
-                    "Abort!",
+                    Resources.Program_Main_Abort_Header,
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -49,4 +46,3 @@ namespace IISExpressManager
         }
     }
 }
-

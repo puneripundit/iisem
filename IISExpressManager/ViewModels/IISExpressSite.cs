@@ -11,7 +11,7 @@ namespace IISExpressManager.ViewModels
     [ImplementPropertyChanged]
     public class IISExpressSite
     {
-        private IEventAggregator _eventAggregator;
+        private readonly IEventAggregator _eventAggregator;
         private const string NOT_FOUND = "Not Found";
 
         private IISExpressSite() {
@@ -27,11 +27,11 @@ namespace IISExpressManager.ViewModels
             Port = portNumber;
 
             ToggleStatusCommand = new DelegateCommand("", "Toggle Status", 
-                ()=> { ToggleStatus(); }, 
+                ToggleStatus, 
                 ()=> true );
 
             ViewInBrowserCommand = new DelegateCommand("", "View in Browser",
-                () => { ViewInBrowser(); },
+                ViewInBrowser,
                 () => Status == SiteStatus.Running);
         }
 
@@ -60,7 +60,7 @@ namespace IISExpressManager.ViewModels
             {
                 Status = SiteStatus.Starting;
                 StartSite();
-                _eventAggregator.Publish<BalloonNotificationEvent>(new BalloonNotificationEvent {
+                _eventAggregator.Publish(new BalloonNotificationEvent {
                     Title = "Site Started",
                     Message = "Website " + SiteName + " has started!",
                     IconType = IconType.Info
@@ -70,7 +70,7 @@ namespace IISExpressManager.ViewModels
             {
                 Status = SiteStatus.Stopping;
                 StopSite();
-                _eventAggregator.Publish<BalloonNotificationEvent>(new BalloonNotificationEvent {
+                _eventAggregator.Publish(new BalloonNotificationEvent {
                     Title = "Site Stopped",
                     Message = "Website " + SiteName + " has stopped!",
                     IconType = IconType.Info

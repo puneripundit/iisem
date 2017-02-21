@@ -1,4 +1,6 @@
-﻿namespace IISExpressManager
+﻿using IISExpressManager.Properties;
+
+namespace IISExpressManager
 {
     partial class MainForm
     {
@@ -32,6 +34,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.siteListView = new System.Windows.Forms.DataGridView();
+            this.ViewInBrowserColumn = new System.Windows.Forms.DataGridViewImageColumn();
+            this.siteGrid_Id_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SiteGrid_Name_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SiteGrid_Port_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SiteGrid_Status_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ToggleStatus = new System.Windows.Forms.DataGridViewImageColumn();
+            this.SiteGrid_ProcessId_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gridViewRowContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.viewInBrowserContextMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.toggleStatusContextMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,13 +75,6 @@
             this.iisExpressStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ViewInBrowserColumn = new System.Windows.Forms.DataGridViewImageColumn();
-            this.siteGrid_Id_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SiteGrid_Name_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SiteGrid_Port_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SiteGrid_Status_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ToggleStatus = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.SiteGrid_ProcessId_Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.siteListView)).BeginInit();
             this.gridViewRowContextMenuStrip.SuspendLayout();
             this.notificationContextMenuStrip.SuspendLayout();
@@ -97,12 +99,72 @@
             this.SiteGrid_ProcessId_Column});
             this.siteListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.siteListView.Location = new System.Drawing.Point(0, 24);
+            this.siteListView.MultiSelect = false;
             this.siteListView.Name = "siteListView";
             this.siteListView.ReadOnly = true;
             this.siteListView.Size = new System.Drawing.Size(751, 442);
             this.siteListView.TabIndex = 11;
+            this.siteListView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.OnCellClick);
+            this.siteListView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.OnCellFormatting);
             this.siteListView.DoubleClick += new System.EventHandler(this.ListViewDoubleClickItem);
             this.siteListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SiteDataGridViewMouseClick);
+            // 
+            // ViewInBrowserColumn
+            // 
+            this.ViewInBrowserColumn.HeaderText = "";
+            this.ViewInBrowserColumn.Image = global::IISExpressManager.Properties.Resources.browser_icon;
+            this.ViewInBrowserColumn.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
+            this.ViewInBrowserColumn.Name = "ViewInBrowserColumn";
+            this.ViewInBrowserColumn.ReadOnly = true;
+            this.ViewInBrowserColumn.Width = 20;
+            // 
+            // siteGrid_Id_Column
+            // 
+            this.siteGrid_Id_Column.DataPropertyName = "Id";
+            this.siteGrid_Id_Column.HeaderText = "ID";
+            this.siteGrid_Id_Column.Name = "siteGrid_Id_Column";
+            this.siteGrid_Id_Column.ReadOnly = true;
+            this.siteGrid_Id_Column.Width = 50;
+            // 
+            // SiteGrid_Name_Column
+            // 
+            this.SiteGrid_Name_Column.DataPropertyName = "SiteName";
+            this.SiteGrid_Name_Column.HeaderText = "Site Name";
+            this.SiteGrid_Name_Column.Name = "SiteGrid_Name_Column";
+            this.SiteGrid_Name_Column.ReadOnly = true;
+            this.SiteGrid_Name_Column.Width = 300;
+            // 
+            // SiteGrid_Port_Column
+            // 
+            this.SiteGrid_Port_Column.DataPropertyName = "Port";
+            this.SiteGrid_Port_Column.HeaderText = "Port #";
+            this.SiteGrid_Port_Column.Name = "SiteGrid_Port_Column";
+            this.SiteGrid_Port_Column.ReadOnly = true;
+            this.SiteGrid_Port_Column.Width = 50;
+            // 
+            // SiteGrid_Status_Column
+            // 
+            this.SiteGrid_Status_Column.DataPropertyName = "Status";
+            this.SiteGrid_Status_Column.HeaderText = "Status";
+            this.SiteGrid_Status_Column.Name = "SiteGrid_Status_Column";
+            this.SiteGrid_Status_Column.ReadOnly = true;
+            // 
+            // ToggleStatus
+            // 
+            this.ToggleStatus.HeaderText = "";
+            this.ToggleStatus.Image = global::IISExpressManager.Properties.Resources.start;
+            this.ToggleStatus.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.ToggleStatus.Name = "ToggleStatus";
+            this.ToggleStatus.ReadOnly = true;
+            this.ToggleStatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ToggleStatus.Width = 20;
+            // 
+            // SiteGrid_ProcessId_Column
+            // 
+            this.SiteGrid_ProcessId_Column.DataPropertyName = "ProcessId";
+            this.SiteGrid_ProcessId_Column.HeaderText = "Process #";
+            this.SiteGrid_ProcessId_Column.Name = "SiteGrid_ProcessId_Column";
+            this.SiteGrid_ProcessId_Column.ReadOnly = true;
             // 
             // gridViewRowContextMenuStrip
             // 
@@ -234,7 +296,7 @@
             this.refreshToolStripMenuItem,
             this.optionsToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
             // 
             // resetToolStripMenuItem
@@ -349,58 +411,6 @@
             this.toolStripStatusLabel4.Size = new System.Drawing.Size(142, 17);
             this.toolStripStatusLabel4.Text = "IIS Express Manager V0.5B";
             // 
-            // ViewInBrowserColumn
-            // 
-            this.ViewInBrowserColumn.HeaderText = "";
-            this.ViewInBrowserColumn.Name = "ViewInBrowserColumn";
-            this.ViewInBrowserColumn.ReadOnly = true;
-            this.ViewInBrowserColumn.Width = 20;
-            // 
-            // siteGrid_Id_Column
-            // 
-            this.siteGrid_Id_Column.DataPropertyName = "Id";
-            this.siteGrid_Id_Column.HeaderText = "ID";
-            this.siteGrid_Id_Column.Name = "siteGrid_Id_Column";
-            this.siteGrid_Id_Column.ReadOnly = true;
-            this.siteGrid_Id_Column.Width = 50;
-            // 
-            // SiteGrid_Name_Column
-            // 
-            this.SiteGrid_Name_Column.DataPropertyName = "SiteName";
-            this.SiteGrid_Name_Column.HeaderText = "Site Name";
-            this.SiteGrid_Name_Column.Name = "SiteGrid_Name_Column";
-            this.SiteGrid_Name_Column.ReadOnly = true;
-            this.SiteGrid_Name_Column.Width = 300;
-            // 
-            // SiteGrid_Port_Column
-            // 
-            this.SiteGrid_Port_Column.DataPropertyName = "Port";
-            this.SiteGrid_Port_Column.HeaderText = "Port #";
-            this.SiteGrid_Port_Column.Name = "SiteGrid_Port_Column";
-            this.SiteGrid_Port_Column.ReadOnly = true;
-            this.SiteGrid_Port_Column.Width = 50;
-            // 
-            // SiteGrid_Status_Column
-            // 
-            this.SiteGrid_Status_Column.DataPropertyName = "Status";
-            this.SiteGrid_Status_Column.HeaderText = "Status";
-            this.SiteGrid_Status_Column.Name = "SiteGrid_Status_Column";
-            this.SiteGrid_Status_Column.ReadOnly = true;
-            // 
-            // ToggleStatus
-            // 
-            this.ToggleStatus.HeaderText = "";
-            this.ToggleStatus.Name = "ToggleStatus";
-            this.ToggleStatus.ReadOnly = true;
-            this.ToggleStatus.Width = 20;
-            // 
-            // SiteGrid_ProcessId_Column
-            // 
-            this.SiteGrid_ProcessId_Column.DataPropertyName = "ProcessId";
-            this.SiteGrid_ProcessId_Column.HeaderText = "Process #";
-            this.SiteGrid_ProcessId_Column.Name = "SiteGrid_ProcessId_Column";
-            this.SiteGrid_ProcessId_Column.ReadOnly = true;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -473,7 +483,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SiteGrid_Name_Column;
         private System.Windows.Forms.DataGridViewTextBoxColumn SiteGrid_Port_Column;
         private System.Windows.Forms.DataGridViewTextBoxColumn SiteGrid_Status_Column;
-        private System.Windows.Forms.DataGridViewButtonColumn ToggleStatus;
+        private System.Windows.Forms.DataGridViewImageColumn ToggleStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn SiteGrid_ProcessId_Column;
     }
 }
